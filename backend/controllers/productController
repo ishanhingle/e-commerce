@@ -3,7 +3,8 @@ const Product=require('../models/productModel');
 const ExpressError = require('../utils/ExpressError');
 const ApiFeatures=require('../utils/ApiFeatures');
 exports.getAllProducts=catchAsync(async (req,res)=>{
-  const apiFeatures=new ApiFeatures(Product.find(),req.query.name).search()
+  const limit=5;
+  const apiFeatures=new ApiFeatures(Product.find(),req.query).search().filter().pagination(limit);
   const products=await apiFeatures.query;
     res.status(200).json({
       products
