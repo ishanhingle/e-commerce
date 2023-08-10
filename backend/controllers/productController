@@ -23,8 +23,13 @@ exports.showProduct=catchAsync(async(req,res,next)=>{
 //admin
 exports.addProduct=catchAsync(async(req,res,next)=>{
     const newProduct=req.body
-   await Product.insertMany(newProduct)
-   console.log(newProduct);
+   let b=await Product.insertMany(newProduct);
+   if(b){
+    res.status(200).json{
+      newProduct,
+    }
+   }
+   
 })
 
 exports.editProduct=catchAsync(async (req,res,next)=>{
