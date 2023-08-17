@@ -28,13 +28,18 @@ const Menu = styled.ul`
   }
 `;
 
-const Item = styled.li``;
+const Item = styled.li`
+:hover{
+  transform:scale(1.1);
+  font-weight:600;
+}`;
 
 const Link = styled.a`
   color: white;
   text-decoration: none;
-
+  display:inline-block;
   :hover {
+    color:black;
     text-decoration: underline;
   }
 `;
@@ -103,18 +108,18 @@ const Header=()=>{
         <Logo>CSS Tricks</Logo>
         <Menu>
           <Item>
-            <Link target="#" href="https://www.instagram.com/igor_dumencic/">
-              Instagram
+            <Link target="#" href="/">
+              Home
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="https://www.behance.net/igordumencic">
-              Behance
+            <Link target="#" href="/products">
+              Products
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="https://github.com/Igor178">
-              Github
+            <Link target="#" href="user/account">
+              Account
             </Link>
           </Item>
         </Menu>
@@ -127,18 +132,18 @@ const Header=()=>{
       <Overlay open={toggle}>
         <OverlayMenu open={toggle}>
           <Item>
-            <Link target="#" href="https://www.instagram.com/igor_dumencic/">
-              Instagram
+            <Link target="#" href="/">
+              Home
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="https://www.behance.net/igordumencic">
-              Behance
+            <Link target="#" href="/products">
+              Products
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="https://github.com/Igor178">
-              Github
+            <Link target="#" href="/account">
+              Account
             </Link>
           </Item>
         </OverlayMenu>
