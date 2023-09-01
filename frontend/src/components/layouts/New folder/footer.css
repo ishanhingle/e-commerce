@@ -1,0 +1,23 @@
+#footer{
+    display: flex;
+    background-color:#1c2022;
+    align-items: center;
+    justify-content:space-between;
+    margin-top: 100vmax;
+    height: 10vmax;
+}
+#ecommerce{
+    color: aliceblue;
+    width: 100%;
+    display: block;
+    font-size: 4vmax;
+    margin: 1vmax;
+    padding: 0px;
+}
+#copyright{
+    color: aliceblue;
+    width: 50%;
+    display: block;
+    font-size: 2vmax;
+    margin: 1vmax;
+}

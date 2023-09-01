@@ -10,9 +10,10 @@ const Nav = styled.nav`
   align-items: center;
 `;
 
-const Logo = styled.h1`
-  font-size: 25px;
-  color: white;
+const Logo = styled.img`
+  height:13vh;
+  border-radius:50px;
+  margin:4px;
 `;
 
 const Menu = styled.ul`
@@ -105,7 +106,7 @@ const Header=()=>{
     const [toggle, toggleNav] = useState(false);
   return <>
      <Nav>
-        <Logo>CSS Tricks</Logo>
+        <Logo src="https://img.freepik.com/free-vector/supermarket-logo-template-concept_23-2148466562.jpg?w=826&t=st=1693194570~exp=1693195170~hmac=57cd857543fa0304eeffefa5a96bb16555948e431cb1e0f9a2b2d4341ba1be23"/>
         <Menu>
           <Item>
             <Link target="#" href="/">
