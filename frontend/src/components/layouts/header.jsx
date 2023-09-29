@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Nav = styled.nav`
   padding: 0 20px;
@@ -33,17 +34,11 @@ const Item = styled.li`
 :hover{
   transform:scale(1.1);
   font-weight:600;
-}`;
+  color:white;
+}
+color:white`;
 
-const Link = styled.a`
-  color: white;
-  text-decoration: none;
-  display:inline-block;
-  :hover {
-    color:black;
-    text-decoration: underline;
-  }
-`;
+
 
 const NavIcon = styled.button`
   background: none;
@@ -109,17 +104,17 @@ const Header=()=>{
         <Logo src="https://img.freepik.com/free-vector/supermarket-logo-template-concept_23-2148466562.jpg?w=826&t=st=1693194570~exp=1693195170~hmac=57cd857543fa0304eeffefa5a96bb16555948e431cb1e0f9a2b2d4341ba1be23"/>
         <Menu>
           <Item>
-            <Link target="#" href="/">
+            <Link  to='/' >
               Home
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="/products">
+            <Link to="/products">
               Products
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="user/account">
+            <Link to="user/account">
               Account
             </Link>
           </Item>
@@ -133,17 +128,17 @@ const Header=()=>{
       <Overlay open={toggle}>
         <OverlayMenu open={toggle}>
           <Item>
-            <Link target="#" href="/">
+            <Link to="/">
               Home
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="/products">
+            <Link to="/products">
               Products
             </Link>
           </Item>
           <Item>
-            <Link target="#" href="/account">
+            <Link to="/account">
               Account
             </Link>
           </Item>
