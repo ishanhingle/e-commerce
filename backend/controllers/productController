@@ -16,7 +16,10 @@ exports.showProduct=catchAsync(async(req,res,next)=>{
   if(!product){
     return next(new ExpressError("product not found",404));
   }
-  res.send('product is here');
+  res.status(200).json({
+    success:true,
+    product,
+  });
 }     
 )
 

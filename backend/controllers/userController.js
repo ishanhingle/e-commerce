@@ -60,3 +60,49 @@ exports.updateUser=catchAsync(async(req,res,next)=>{
         user
     })  
 })
+
+
+//ADMIN ROUTES
+
+//get all users
+exports.getAllUsers=catchAsync(async(req,res,next)=>{
+    const users=await User.find({});
+    res.status(200).json({
+        success:true,
+        users
+    })
+})
+//get single users
+exports.getSingleUSer=catchAsync(async(req,res,next)=>{
+    const user=await User.findById(req.params.id);
+    res.status(200).json({
+        success:true,
+        user
+    })
+})
+//update roles
+exports.updateUserRole=catchAsync(async(req,res,next)=>{
+    const newUser={
+        email:req.body.email,
+        username:req.body.username,
+        role:req.body.role,
+    }
+    const user = await User.findByIdAndUpdate(req.params.id, newUser,{
+        new: true,
+        runValidators: true,
+      });
+    res.status(200).json({
+        success:true,
+        user
+    })  
+})
+//delete user
+exports.deleteUser=catchAsync(async(req,res,next)=>{
+    const user =await User.findById(req.params.id);
+    if(!user){return next(new ExpressError("user not found",404))}
+   await User.findByIdAndDelete(req.params.id);
+   res.status(200).json({
+    success:true,
+    message:"user deleted successfully"
+   })
+})

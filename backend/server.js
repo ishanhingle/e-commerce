@@ -6,6 +6,7 @@ const session=require('express-session');
 const LocalStratgy=require('passport-local')
 const passport=require('passport');
 const passportLocalMongoose=require('passport-local-mongoose');
+const errorHandler=require('./middleware/errorHandler');
 
 const productRoute=require('./routes/productRoute');
 const userRoute=require('./routes/userRoute');
@@ -34,3 +35,4 @@ passport.deserializeUser(User.deserializeUser());
 //routing
 app.use('/products',productRoute)
 app.use('/user',userRoute);
+ app.use(errorHandler);

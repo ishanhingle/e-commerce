@@ -7,13 +7,14 @@ const { isAuthenticated, authorizeRoles } = require('../utils/auth');
 
 router.route('/')
       .get(getAllProducts)
-
+router.route('/:id')
+.get(showProduct)
+      
 //admin add products
-router.route('/add')
+router.route('/admin/add')
  .post(isAuthenticated,authorizeRoles("admin"),addProduct)
 
- router.route('/:id')
-       .get(showProduct)
+ router.route('/admin/:id')
        .put(isAuthenticated,authorizeRoles("admin"),editProduct)
        .delete(isAuthenticated,authorizeRoles("admin"),deleteProduct)
 

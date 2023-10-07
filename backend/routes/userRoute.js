@@ -1,7 +1,7 @@
 const express=require('express');
-const { registerUser, loginUser, logout, getUserDetails, updateUser } = require('../controllers/userController');
+const { registerUser, loginUser, logout, getUserDetails, updateUser, getAllUsers, getSingleUSer, updateUserRole, deleteUser } = require('../controllers/userController');
 const passport=require('passport');
-const { isAuthenticated } = require('../utils/auth');
+const { isAuthenticated, authorizeRoles } = require('../utils/auth');
 const router=express.Router();
 
 //register
@@ -16,6 +16,15 @@ router.route('/logout')
       .post(logout);
 module.exports=router;
 
-router.route('/my')
+//myDetais
+router.route('/me')
       .get(isAuthenticated,getUserDetails)
-      .put(isAuthenticated,updateUser)
+router.route('me/update').put(isAuthenticated,updateUser)
+
+//admin
+router.route('/admin/allUsers')
+      .get(isAuthenticated,authorizeRoles("admin"),getAllUsers)
+router.route('/admin/user/:id')
+      .get(isAuthenticated,authorizeRoles("admin"),getSingleUSer)
+      .put(isAuthenticated,authorizeRoles("admin"),updateUserRole)
+      .delete(isAuthenticated,authorizeRoles("admin"),deleteUser)
