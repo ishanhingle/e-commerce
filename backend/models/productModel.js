@@ -1,4 +1,5 @@
 const mongoose=require('mongoose');
+const userModel=require('./userModel');
 const productSchema=new mongoose.Schema({
     name:{
         type:String,
@@ -55,6 +56,11 @@ const productSchema=new mongoose.Schema({
     dateCreated:{
         type:Date,
         default:Date.now
+    },
+    author:{
+        type:mongoose.Schema.ObjectId,
+        ref:userModel,
+        required:true,
     }
 })
 module.exports=mongoose.model('Product',productSchema);
