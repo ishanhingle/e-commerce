@@ -41,8 +41,13 @@ const productSchema=new mongoose.Schema({
     },
     reviews:[{
         author:{
-            type:String,
+            type:mongoose.Schema.ObjectId,
+            ref:userModel,
             required:true
+        },
+        author_name:{
+            type:String,
+            required:true,
         },
         rating:{
             type:Number,

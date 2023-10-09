@@ -23,6 +23,77 @@ exports.showProduct=catchAsync(async(req,res,next)=>{
 }     
 )
 
+//review
+//add review
+exports.addReview=catchAsync(async(req,res,next)=>{
+  const{productId,rating,comment}=req.body;
+  const product= await Product.findById(productId);
+  const review={
+    author:req.user._id,
+    author_name:req.user.name,
+    rating:Number(rating),
+    comment,
+  }
+  const isReviewd=await product.reviews.find(rev=>rev.author.toString()===req.user._id.toString())
+  if(isReviewd){
+     product.reviews.forEach(r=> {
+              if(r.author.toString()==req.user._id.toString()){
+                r.rating=review.rating,
+                r.comment=review.comment
+              }
+     });
+  }else{
+    product.reviews.push(review);
+  }
+  product.numOfReviews=product.reviews.length
+   let total=0;
+   product.reviews.forEach(rev=>{
+     total=total+rev.rating
+   })
+  product.rating=total/product.numOfReviews;
+  await product.save({ validateBeforeSave: false });
+  res.status(201).json({
+    success:true,
+    product
+  })
+})
+exports.deleteReview=catchAsync(async(req,res,next)=>{
+  const product=await Product.findById(req.params.id)
+  if(!product){
+    next(new ExpressError("product not found",404))
+    return;
+  }
+  product.reviews=product.reviews.filter(rev=>rev.author.toString()!=req.user._id.toString());
+  product.numOfReviews=product.reviews.length
+   let total=0;
+   product.reviews.forEach(rev=>{
+     total=total+rev.rating
+   })
+  product.rating=total/product.numOfReviews;
+  await product.save({ validateBeforeSave: false });
+  res.status(201).json({
+    success:true,
+    product
+  })
+})
+
+//get all reviews
+exports.getAllReviews=catchAsync(async(req,res,next)=>{
+  const product=await Product.findById(req.params.id)
+  if(!product){
+    next(new ExpressError("product not found",404))
+    return;
+  }
+  const reviews=product.reviews
+  res.status(200).json({
+    success:true,
+    reviews
+  })
+})
+
+
+
+
 //admin
 exports.addProduct=catchAsync(async(req,res,next)=>{
     const newProduct=req.body

@@ -35,4 +35,4 @@ passport.deserializeUser(User.deserializeUser());
 //routing
 app.use('/products',productRoute)
 app.use('/user',userRoute);
- app.use(errorHandler);
+//app.use(errorHandler);

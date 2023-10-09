@@ -16,6 +16,7 @@ router.route('/logout')
       .post(logout);
 module.exports=router;
 
+
 //myDetais
 router.route('/me')
       .get(isAuthenticated,getUserDetails)
