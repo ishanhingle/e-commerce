@@ -10,6 +10,7 @@ const errorHandler=require('./middleware/errorHandler');
 
 const productRoute=require('./routes/productRoute');
 const userRoute=require('./routes/userRoute');
+const orderRoute=require('./routes/orderRoute')
 
 const User=require('./models/userModel');
 
@@ -35,4 +36,5 @@ passport.deserializeUser(User.deserializeUser());
 //routing
 app.use('/products',productRoute)
 app.use('/user',userRoute);
+app.use('order',orderRoute);
 //app.use(errorHandler);
